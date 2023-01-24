@@ -3,11 +3,10 @@ import modules
 # Arguments
 NUM_FLUTES = 6
 ALLOW_HOLES = True
-SONG_PATH = '/Users/tomshenkar/PycharmProjects/FluteGenerator/Seven_Nation_Army.wav'
+SONG_PATH = 'data/Seven_Nation_Army.wav'
 
 
 if __name__ == '__main__':
-
     generator = modules.FluteGenerator()
     if SONG_PATH.split('.')[-1] == 'mp3':
         generator.mp3_to_wav_converter(SONG_PATH)

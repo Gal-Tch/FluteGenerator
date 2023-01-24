@@ -1,13 +1,8 @@
 import numpy as np
-from scipy.optimize import minimize
 import cvxpy as cp
-from audio2numpy import open_audio
-import scipy.io.wavfile
-from scipy import signal
 import matplotlib.pyplot as plt
 import librosa
 import librosa.display
-from scipy.io.wavfile import write
 import beeper
 from pydub import AudioSegment
 
@@ -82,7 +77,8 @@ class FluteGenerator:
                         equal_difference_hole_locations_goal=False,
                         equal_difference_pipe_lengths_constraint=False,
                         equal_difference_hole_locations_constraint=False,
-                        plot_flute=True
+                        plot_flute=True,
+                        hole_locations_constraint=None
                         ):
 
         wavelengths = self.c/freqs  # helps with the quadratic program
@@ -120,6 +116,11 @@ class FluteGenerator:
             if equal_difference_hole_locations_constraint:
                 new_constraints = [hs[i + 2] - hs[i + 1] == hs[i + 1] - hs[i] for i in range(hs.shape[0] - 2)]
                 constraints += new_constraints
+            if hole_locations_constraint != None:
+                new_constraints = [hs[i] - hole_locations_constraint[i] == 0
+                                   for i in range(hole_locations_constraint.shape[0])]
+                constraints += new_constraints
+
 
         prob = cp.Problem(cp.Minimize(cost), constraints)
         prob.solve()
