@@ -22,11 +22,7 @@ class BeepGenerator:
 
         return
 
-    def append_sinewave(
-            self,
-            freq=440.0,
-            duration_milliseconds=500,
-            volume=1.0):
+    def append_sinewave(self, freq=440.0, duration_milliseconds=500, volume=1.0):
         """
         The sine wave generated here is the standard beep.  If you want something
         more aggressive you could try a square or saw tooth waveform.   Though there
@@ -43,11 +39,7 @@ class BeepGenerator:
         self.audio.extend(list(sine_wave))
         return
 
-    def append_sinewaves(
-            self,
-            freqs=[440.0],
-            duration_milliseconds=500,
-            volumes=[1.0]):
+    def append_sinewaves(self, freqs=[440.0], duration_milliseconds=500, volumes=[1.0]):
         """
         The sine wave generated here is the standard beep.  If you want something
         more aggressive you could try a square or saw tooth waveform.   Though there
