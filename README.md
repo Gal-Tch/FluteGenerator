@@ -14,14 +14,14 @@ If you want to use mp3 music files instead of wav music files, you'll also need 
 
 ## CLI example
 
-Simple example to create stl file of 6 flutes with holes for some wav file:
+Simple example to create stl file of 6 flutes with holes for the first 8 seconds some wav file:
 ```
-python -W ignore main.py --no-sorted -a 12 -d 15 -s 8 - data/Seven_Nation_Army.wav
+python -W ignore main.py --no-sorted --amount 12 --seconds 8 --file_path data/Seven_Nation_Army.wav
 ```
 
 Simple example to create stl file of 6 flutes without holes and without plots for some wav file:
 ```
-python -W ignore main.py --no-plot --no-sorted --no-holes -a 6 -d 15 -s 8 - data/Seven_Nation_Army.wav
+python -W ignore main.py --no-plot --no-sorted --no-holes -a 6 -s 8 -f data/Seven_Nation_Army.wav
 ```
 
 We can path the '--output', '-dimensions', and '--sorted/--no-sorted' parameters that are used in the Panpipe submodlue 
