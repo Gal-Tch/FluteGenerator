@@ -25,4 +25,4 @@ python -W ignore main.py --no-plot --no-sorted --no-holes -a 6 -d 15 -s 8 - data
 ```
 
 #### We can path the '--output', '-dimensions', and '--sorted/--no-sorted' parameters that are used in the Panpipe submodlue 
-#### For information about the Panpipe submodule and its cli parameters view [here](panpipe/README.md)
+#### For information about the Panpipe submodule and its cli parameters view [panpipe/README.md](panpipe/README.md)
