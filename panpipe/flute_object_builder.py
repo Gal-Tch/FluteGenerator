@@ -105,7 +105,7 @@ class FluteAdder:
     def set_finger_hole_location(self, hole_location: float):
         finger_hole_object = get_finger_hole()
         finger_hole_object.location.x = 0
-        finger_hole_object.location.y = hole_location + BIAS - HEAD_DEPTH
+        finger_hole_object.location.y = hole_location + BIAS + HEAD_DEPTH
         flute_z_location = self.flute_number * self.flute_xz_dimensions
         finger_hole_object.location.z = flute_z_location - (self.flute_xz_dimensions / 2)
 

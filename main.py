@@ -36,7 +36,6 @@ def convert_results_to_panpipe_format(flutes_lengths, flutes_holes) -> str:
         hole = ":" + str(flutes_holes[i] * 1000) if flutes_holes else ""
         flutes_in_panpipe_format.append(str(flute_length * 1000) + hole)
 
-    result = str()
     return " ".join(flutes_in_panpipe_format)
 
 
