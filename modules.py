@@ -5,6 +5,9 @@ import librosa
 import librosa.display
 import beeper
 from pydub import AudioSegment
+from math import log, ceil
+
+HALF_STEP = 1.059
 
 
 class FluteGenerator:
@@ -21,7 +24,15 @@ class FluteGenerator:
         sound = AudioSegment.from_mp3(path)
         sound.export(path.split(".")[0] + ".wav", format="wav")
 
-    def freq_extractor(self, wav_path, first_n_seconds=10, plot_pitches=True, generate_beep_file=True, num_freqs=10):
+    def freq_extractor(
+        self,
+        wav_path,
+        first_n_seconds=10,
+        plot_pitches=True,
+        generate_beep_file=True,
+        num_freqs=10,
+        minimum_frequency=None,
+    ):
         # Extracts the freqs from the song (main frequency in each time step)
         x, sr = librosa.load(wav_path, sr=None)
         # If it is desired to only use the first X seconds of a song
@@ -64,6 +75,11 @@ class FluteGenerator:
             bg.save_wav(wav_path.split(".")[0] + "_beeps.wav")
 
         binned_freqs = np.delete(binned_freqs, 0)
+
+        #  shift the frequency by half tones to fit the song to the printer
+        if minimum_frequency and binned_freqs.min() < minimum_frequency:
+            number_of_half_tones_shift = log(minimum_frequency / binned_freqs.min(), 2) * 12
+            binned_freqs = binned_freqs * (HALF_STEP ** ceil(number_of_half_tones_shift))
         return binned_freqs
 
     def design_flute(

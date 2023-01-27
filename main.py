@@ -7,6 +7,7 @@ NUM_FLUTES = 6
 FIRST_N_SECONDS = 15
 ALLOW_HOLES = True
 SONG_PATH = "data/Seven_Nation_Army.wav"
+MINIMUM_FREQUENCY = 480  # correlates to Ender printer max length, and A4 note
 
 
 def parse_args():
@@ -72,7 +73,11 @@ if __name__ == "__main__":
         generator.mp3_to_wav_converter(song_path)
 
     flute_freqs = generator.freq_extractor(
-        song_path.split(".")[0] + ".wav", first_n_seconds=first_n_seconds, num_freqs=amount, plot_pitches=plot
+        song_path.split(".")[0] + ".wav",
+        first_n_seconds=first_n_seconds,
+        num_freqs=amount,
+        plot_pitches=plot,
+        minimum_frequency=MINIMUM_FREQUENCY,
     )
 
     if ALLOW_HOLES:
